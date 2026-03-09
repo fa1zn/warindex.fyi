@@ -55,3 +55,103 @@ export const conflicts: Conflict[] = [
     relatedCompanies: ["CVX", "XOM"],
   },
 ];
+
+// Extended conflict alert interface for modals
+export interface ConflictAlert {
+  id: string;
+  title: string;
+  description: string;
+  severity: "low" | "medium" | "high" | "critical";
+  date: string;
+  source?: string;
+  affectedCountries: string[]; // country codes
+  category: "military" | "economic" | "political" | "humanitarian";
+  isActive: boolean;
+}
+
+export const conflictAlerts: ConflictAlert[] = [
+  {
+    id: "ukr-rus-2024",
+    title: "Russia-Ukraine War Escalation",
+    description:
+      "Ongoing military conflict with significant economic implications. Recent drone attacks on energy infrastructure have intensified, affecting global energy markets and European security posture.",
+    severity: "critical",
+    date: "Ongoing since Feb 2022",
+    source: "ACLED, Reuters",
+    affectedCountries: ["UKR", "RUS", "DEU", "POL", "USA"],
+    category: "military",
+    isActive: true,
+  },
+  {
+    id: "isr-irn-2024",
+    title: "Israel-Iran Tensions",
+    description:
+      "Escalating regional tensions following strikes on Iranian proxies. Risk of direct military confrontation affecting oil prices and regional stability.",
+    severity: "high",
+    date: "Escalated Mar 2024",
+    source: "ISW, Bloomberg",
+    affectedCountries: ["ISR", "IRN", "SAU", "USA"],
+    category: "military",
+    isActive: true,
+  },
+  {
+    id: "twn-chn-2024",
+    title: "Taiwan Strait Tensions",
+    description:
+      "Increased Chinese military activity around Taiwan following political developments. Semiconductor supply chain at risk if situation escalates.",
+    severity: "high",
+    date: "Elevated risk 2024",
+    source: "CSIS, WSJ",
+    affectedCountries: ["TWN", "CHN", "JPN", "USA", "KOR"],
+    category: "military",
+    isActive: true,
+  },
+  {
+    id: "ind-pak-2024",
+    title: "India-Pakistan Border Conflict",
+    description:
+      "Renewed tensions along the Line of Control following cross-border incidents. Both nations have nuclear capabilities, raising global concern.",
+    severity: "high",
+    date: "Escalated 2024",
+    source: "Reuters, Al Jazeera",
+    affectedCountries: ["IND", "PAK", "CHN"],
+    category: "military",
+    isActive: true,
+  },
+  {
+    id: "red-sea-2024",
+    title: "Red Sea Shipping Disruption",
+    description:
+      "Houthi attacks on commercial shipping have disrupted major trade routes, forcing rerouting around Africa and increasing shipping costs globally.",
+    severity: "medium",
+    date: "Since Nov 2023",
+    source: "Lloyd's, Reuters",
+    affectedCountries: ["SAU", "IRN", "USA", "GBR", "EGY"],
+    category: "economic",
+    isActive: true,
+  },
+  {
+    id: "prk-missiles-2024",
+    title: "North Korea Missile Tests",
+    description:
+      "Continued ballistic missile testing by DPRK raises regional security concerns and potential for new sanctions affecting Asian markets.",
+    severity: "medium",
+    date: "Ongoing",
+    source: "KCNA, Yonhap",
+    affectedCountries: ["PRK", "KOR", "JPN", "USA", "CHN"],
+    category: "military",
+    isActive: true,
+  },
+];
+
+export const getConflictsByCountry = (countryCode: string): ConflictAlert[] => {
+  return conflictAlerts.filter((c) => c.affectedCountries.includes(countryCode));
+};
+
+export const getActiveConflicts = (): ConflictAlert[] => {
+  return conflictAlerts.filter((c) => c.isActive);
+};
+
+export const getCriticalConflicts = (): ConflictAlert[] => {
+  return conflictAlerts.filter((c) => c.severity === "critical" || c.severity === "high");
+};

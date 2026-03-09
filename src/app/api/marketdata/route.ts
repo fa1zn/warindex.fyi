@@ -40,13 +40,30 @@ interface PolymarketPrediction {
   category: string;
 }
 
-// Stock tickers we track
+// Stock tickers we track - comprehensive list
 const TRACKED_STOCKS = [
-  'LMT', 'RTX', 'PLTR', 'CVX', // USA
-  'GAZP', 'SBER', // Russia (via ADRs)
-  'BABA', 'TSM', // China/Taiwan
-  'RHM', 'SIE', 'BAS', // Germany
-  'BA.L', 'SHEL', 'BP', // UK
+  // USA - Defense & Tech
+  'LMT', 'RTX', 'NOC', 'GD', 'BA', 'PLTR', 'PANW',
+  // USA - Energy
+  'CVX', 'XOM', 'COP', 'OXY',
+  // Germany
+  'RHM.DE', 'SIE.DE', 'BAS.DE',
+  // UK
+  'BA.L', 'SHEL.L', 'BP.L',
+  // Israel
+  'ESLT', 'NICE', 'CHKP',
+  // Taiwan/China
+  'TSM', '2330.TW', 'BABA',
+  // Japan
+  '7011.T', '6501.T',
+  // South Korea
+  '005930.KS', '000660.KS',
+  // France
+  'HO.PA', 'SAF.PA', 'TTE.PA',
+  // Norway
+  'EQNR.OL',
+  // Brazil
+  'PBR',
 ];
 
 // Fetch real stock data from Yahoo Finance

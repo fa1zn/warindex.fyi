@@ -1,11 +1,6 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
 import "./globals.css";
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -13,7 +8,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://warindex.io"),
+  metadataBase: new URL("https://warindex.fyi"),
   title: "War Index — The Cost of Conflict",
   description:
     "Visualize how global conflicts reshape markets. Track geopolitical tensions and their economic impact on companies and economies in real-time.",
@@ -32,7 +27,7 @@ export const metadata: Metadata = {
     title: "War Index — The Cost of Conflict",
     description:
       "Visualize how global conflicts reshape markets and move capital.",
-    url: "https://warindex.io",
+    url: "https://warindex.fyi",
     siteName: "War Index",
     images: [
       {
@@ -79,7 +74,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} antialiased`}
+        className={`${GeistSans.className} antialiased`}
       >
         {children}
       </body>

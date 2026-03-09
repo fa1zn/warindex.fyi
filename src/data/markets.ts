@@ -7,6 +7,7 @@ export interface Stock {
   sector: string;
   reason: string;
   conflictExposure: string;
+  potentialUpside?: string; // e.g., "+15-25%" - expected gain if conflict escalates
 }
 
 export interface CountryMarket {
@@ -47,6 +48,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Defense",
         reason: "Ukraine aid packages and increased NATO spending driving record backlog of $156B in orders.",
         conflictExposure: "Primary beneficiary of global rearmament cycle",
+        potentialUpside: "+18-25%",
       },
       {
         ticker: "RTX",
@@ -57,6 +59,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Defense",
         reason: "Patriot missile demand surging; signed $1.2B contract for Ukraine defense systems.",
         conflictExposure: "Air defense systems in highest demand since Cold War",
+        potentialUpside: "+15-22%",
       },
       {
         ticker: "PLTR",
@@ -67,6 +70,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Technology",
         reason: "AI-powered battlefield analytics contracts expanding with DoD and NATO allies.",
         conflictExposure: "Software backbone of modern military intelligence",
+        potentialUpside: "+25-40%",
       },
       {
         ticker: "CVX",
@@ -77,6 +81,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Energy",
         reason: "Oil prices stabilizing as OPEC+ maintains production cuts despite demand concerns.",
         conflictExposure: "Benefits from supply disruptions but faces transition pressure",
+        potentialUpside: "+12-18%",
       },
     ],
     economicSummary: "Defense sector leading gains as geopolitical tensions drive unprecedented military spending. Tech sector benefits from AI defense contracts.",
@@ -103,6 +108,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Energy",
         reason: "European gas exports collapsed 80%; pivoting to China at steep discounts.",
         conflictExposure: "Sanctions decimated primary revenue streams",
+        potentialUpside: "-15-25%",
       },
       {
         ticker: "SBER",
@@ -113,6 +119,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Finance",
         reason: "SWIFT exclusion limiting international operations; domestic focus only.",
         conflictExposure: "Isolated from global financial system",
+        potentialUpside: "-10-20%",
       },
       {
         ticker: "ROSN",
@@ -123,6 +130,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Energy",
         reason: "Oil price cap limiting revenues; shadow fleet operations adding costs.",
         conflictExposure: "Forced into gray market oil trading",
+        potentialUpside: "-8-15%",
       },
     ],
     economicSummary: "War economy strain visible despite official statistics. Brain drain accelerating as 500K+ professionals emigrated.",
@@ -149,6 +157,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Technology",
         reason: "Regulatory pressures easing but consumer spending remains weak post-COVID.",
         conflictExposure: "US-China tensions create delisting risks",
+        potentialUpside: "-5-15%",
       },
       {
         ticker: "TSM",
@@ -159,6 +168,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Semiconductors",
         reason: "AI chip demand surging; building Arizona fab to diversify from Taiwan risk.",
         conflictExposure: "Taiwan tensions threaten 90% of advanced chip production",
+        potentialUpside: "+20-35%",
       },
       {
         ticker: "PTR",
@@ -169,6 +179,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Energy",
         reason: "Discounted Russian oil imports boosting margins; domestic demand recovering.",
         conflictExposure: "Benefits from Russia isolation but faces secondary sanction risks",
+        potentialUpside: "+8-15%",
       },
     ],
     economicSummary: "Property sector crisis contained but not resolved. Manufacturing strength offsets service sector weakness.",
@@ -195,6 +206,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Defense",
         reason: "€100B special defense fund driving historic order book growth.",
         conflictExposure: "Leading European rearmament beneficiary",
+        potentialUpside: "+30-45%",
       },
       {
         ticker: "SIE",
@@ -205,6 +217,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Industrial",
         reason: "Energy transition investments high but industrial demand softening.",
         conflictExposure: "Russia exit cost €600M; refocusing on resilient supply chains",
+        potentialUpside: "+5-12%",
       },
       {
         ticker: "BAS",
@@ -215,6 +228,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Chemicals",
         reason: "Energy costs still 3x pre-war levels; shifting production to US and China.",
         conflictExposure: "German industrial model under structural pressure",
+        potentialUpside: "-5-10%",
       },
     ],
     economicSummary: "Energy crisis reshaping industrial base. Defense spending surge partially offsets manufacturing decline.",
@@ -241,6 +255,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Energy",
         reason: "OPEC+ production cuts supporting prices; $100B+ annual profits continuing.",
         conflictExposure: "Geopolitical leverage through oil supply control",
+        potentialUpside: "+15-25%",
       },
       {
         ticker: "1211.SR",
@@ -251,6 +266,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Chemicals",
         reason: "Petrochemical margins stable; Vision 2030 diversification progressing.",
         conflictExposure: "Downstream integration reducing crude dependency",
+        potentialUpside: "+8-12%",
       },
     ],
     economicSummary: "Oil windfall funding massive diversification. NEOM and entertainment investments accelerating.",
@@ -277,6 +293,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Energy",
         reason: "70% of power infrastructure damaged; rolling blackouts nationwide.",
         conflictExposure: "Primary target of Russian strikes",
+        potentialUpside: "+50-100%",
       },
       {
         ticker: "MHP",
@@ -287,6 +304,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Agriculture",
         reason: "Grain exports disrupted despite Black Sea corridor; storage facilities damaged.",
         conflictExposure: "Agricultural exports critical for foreign currency",
+        potentialUpside: "+40-80%",
       },
     ],
     economicSummary: "War economy sustained by $100B+ Western aid. Reconstruction needs estimated at $500B+.",
@@ -313,6 +331,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Defense",
         reason: "Order book at record £66B; AUKUS submarine deal worth £2B annually.",
         conflictExposure: "European defense consolidation leader",
+        potentialUpside: "+20-30%",
       },
       {
         ticker: "SHEL",
@@ -323,6 +342,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Energy",
         reason: "LNG trading profits surging; European gas volatility creating opportunities.",
         conflictExposure: "Energy trading expertise valuable in volatile markets",
+        potentialUpside: "+10-18%",
       },
       {
         ticker: "BP",
@@ -333,6 +353,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Energy",
         reason: "Rosneft stake writedown complete; transition strategy facing investor pressure.",
         conflictExposure: "Took largest Western loss from Russia exit at $25B",
+        potentialUpside: "+8-15%",
       },
     ],
     economicSummary: "Defense and energy sectors outperforming. Services economy showing resilience post-Brexit.",
@@ -359,6 +380,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Defense",
         reason: "Iron Dome demand surging globally; drone technology exports expanding.",
         conflictExposure: "Combat-proven systems commanding premium prices",
+        potentialUpside: "+25-35%",
       },
       {
         ticker: "CHKP",
@@ -369,6 +391,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Cybersecurity",
         reason: "Cyber warfare awareness driving enterprise security spending.",
         conflictExposure: "Conflicts highlight critical infrastructure vulnerabilities",
+        potentialUpside: "+15-22%",
       },
     ],
     economicSummary: "Tech sector resilient despite regional tensions. Defense exports at record levels.",
@@ -395,6 +418,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Semiconductors",
         reason: "AI boom driving 3nm chip demand; only manufacturer of most advanced chips globally.",
         conflictExposure: "World's most strategically important company—$500B market cap at geopolitical risk",
+        potentialUpside: "+20-35%",
       },
       {
         ticker: "2317.TW",
@@ -405,6 +429,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Electronics",
         reason: "Apple production diversifying to India but Taiwan remains primary hub.",
         conflictExposure: "Supply chain diversification accelerating but slowly",
+        potentialUpside: "+12-20%",
       },
     ],
     economicSummary: "Semiconductor dominance both blessing and curse. TSMC alone is 15% of GDP.",
@@ -431,6 +456,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Petrochemicals",
         reason: "Sanctions workarounds via China enabling continued exports.",
         conflictExposure: "Gray market operations sustaining revenue",
+        potentialUpside: "-10-20%",
       },
     ],
     economicSummary: "Sanctions-hit but not collapsed. China and Russia trade keeping economy afloat.",
@@ -457,6 +483,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Industrial",
         reason: "Defense contracts growing; infrastructure exports to allies increasing.",
         conflictExposure: "Remilitarization driving defense sector growth",
+        potentialUpside: "+15-22%",
       },
       {
         ticker: "7011.T",
@@ -467,6 +494,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Defense",
         reason: "Record defense budget driving domestic orders; missile systems in demand.",
         conflictExposure: "Japan's largest defense contractor benefiting from rearmament",
+        potentialUpside: "+25-40%",
       },
       {
         ticker: "6758.T",
@@ -477,6 +505,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Electronics",
         reason: "Gaming strong but image sensor demand softening with smartphone slowdown.",
         conflictExposure: "Supply chain concerns from Taiwan exposure",
+        potentialUpside: "+5-12%",
       },
     ],
     economicSummary: "Yen weakness boosting exporters. Historic defense buildup underway with 2% GDP target.",
@@ -503,6 +532,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Semiconductors",
         reason: "Memory chip prices recovering; HBM demand for AI surging.",
         conflictExposure: "Benefiting from China chip restrictions; gaining market share",
+        potentialUpside: "+18-28%",
       },
       {
         ticker: "000660.KS",
@@ -513,6 +543,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Semiconductors",
         reason: "HBM leader for AI chips; Nvidia's primary supplier.",
         conflictExposure: "Critical AI infrastructure supplier",
+        potentialUpside: "+22-35%",
       },
       {
         ticker: "012330.KS",
@@ -523,6 +554,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Defense",
         reason: "K2 tanks and K9 howitzers selling to Poland and NATO allies.",
         conflictExposure: "Emerging as major defense exporter due to Ukraine war",
+        potentialUpside: "+20-30%",
       },
     ],
     economicSummary: "Chip exports rebounding. Defense industry emerging as surprise winner from Ukraine conflict.",
@@ -549,6 +581,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Energy",
         reason: "Refining margins strong from discounted Russian crude imports.",
         conflictExposure: "Neutral stance enabling profitable energy arbitrage",
+        potentialUpside: "+12-18%",
       },
       {
         ticker: "TCS.NS",
@@ -559,6 +592,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Technology",
         reason: "IT services demand stable; benefiting from supply chain diversification from China.",
         conflictExposure: "Alternative to China for global manufacturing",
+        potentialUpside: "+10-15%",
       },
       {
         ticker: "HAL.NS",
@@ -569,6 +603,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Defense",
         reason: "Tejas fighter jet orders surging; indigenous defense push accelerating.",
         conflictExposure: "Self-reliance initiative driving domestic defense spending",
+        potentialUpside: "+25-35%",
       },
     ],
     economicSummary: "Fastest growing major economy. Manufacturing shift from China accelerating.",
@@ -595,6 +630,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Energy",
         reason: "EU energy hub status growing; LNG terminal expansion underway.",
         conflictExposure: "Frontline NATO state investing heavily in energy security",
+        potentialUpside: "+15-22%",
       },
       {
         ticker: "PGE.WA",
@@ -605,6 +641,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Energy",
         reason: "Nuclear and offshore wind investments accelerating energy transition.",
         conflictExposure: "Decoupling from Russian energy fastest in EU",
+        potentialUpside: "+18-28%",
       },
       {
         ticker: "PZU.WA",
@@ -615,6 +652,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Finance",
         reason: "Insurance demand rising with geopolitical uncertainty.",
         conflictExposure: "War risk premiums increasing revenue",
+        potentialUpside: "+10-15%",
       },
     ],
     economicSummary: "Frontline NATO economy booming. Largest defense spender in Europe at 4% of GDP.",
@@ -641,6 +679,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Industrial",
         reason: "Connecting East and West as Russia airspace closes for Western carriers.",
         conflictExposure: "Geographic advantage creating airline hub opportunity",
+        potentialUpside: "+20-30%",
       },
       {
         ticker: "ASELS.IS",
@@ -651,6 +690,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Defense",
         reason: "Bayraktar drone success driving defense export boom.",
         conflictExposure: "TB2 drones became symbol of Ukrainian resistance",
+        potentialUpside: "+30-45%",
       },
       {
         ticker: "TUPRS.IS",
@@ -661,6 +701,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Energy",
         reason: "Refining Russian crude for export; strategic neutral position paying off.",
         conflictExposure: "Energy arbitrage from neutral diplomatic stance",
+        potentialUpside: "+15-22%",
       },
     ],
     economicSummary: "Inflation crisis ongoing but exports thriving. Drone diplomacy boosting soft power.",
@@ -687,6 +728,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Defense",
         reason: "Commercial backlog at record 8,000+ aircraft; defense orders accelerating.",
         conflictExposure: "European defense integration leader",
+        potentialUpside: "+18-25%",
       },
       {
         ticker: "SAF.PA",
@@ -697,6 +739,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Defense",
         reason: "Engine demand surging with aircraft production ramp; military engines in demand.",
         conflictExposure: "Critical aerospace supply chain position",
+        potentialUpside: "+15-22%",
       },
       {
         ticker: "TTE.PA",
@@ -707,6 +750,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Energy",
         reason: "LNG portfolio well-positioned for European demand shift from Russian gas.",
         conflictExposure: "Benefiting from energy transition and security premium",
+        potentialUpside: "+12-18%",
       },
     ],
     economicSummary: "Nuclear power advantage in energy crisis. Luxury exports and aerospace leading growth.",
@@ -733,6 +777,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Mining",
         reason: "Critical minerals demand surging for defense and energy transition.",
         conflictExposure: "China decoupling driving mineral diversification to allies",
+        potentialUpside: "+12-18%",
       },
       {
         ticker: "WDS.AX",
@@ -743,6 +788,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Energy",
         reason: "LNG exports to Asia at premium prices as region diversifies from Russia.",
         conflictExposure: "Energy security supplier to Japan and Korea",
+        potentialUpside: "+15-22%",
       },
       {
         ticker: "ASC.AX",
@@ -753,6 +799,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Defense",
         reason: "AUKUS submarine deal worth $368B over 30 years.",
         conflictExposure: "Largest defense investment in Australian history",
+        potentialUpside: "+35-50%",
       },
     ],
     economicSummary: "Resources boom from supply chain diversification. AUKUS transforming defense industry.",
@@ -779,6 +826,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Energy",
         reason: "Record profits from European gas exports replacing Russian supply.",
         conflictExposure: "Largest beneficiary of European energy crisis",
+        potentialUpside: "+15-25%",
       },
       {
         ticker: "KOG.OL",
@@ -789,6 +837,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Defense",
         reason: "Naval Strike Missile and F-35 component orders surging.",
         conflictExposure: "NATO's northern defense industrial champion",
+        potentialUpside: "+25-38%",
       },
     ],
     economicSummary: "Sovereign wealth fund grew $200B in 2023 alone. Energy windfall unprecedented.",
@@ -815,6 +864,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Energy",
         reason: "Pre-salt production expanding; high oil prices boosting revenues.",
         conflictExposure: "Neutral stance maintaining all trade relationships",
+        potentialUpside: "+15-22%",
       },
       {
         ticker: "VALE3.SA",
@@ -825,6 +875,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Mining",
         reason: "Iron ore demand stable; nickel for EV batteries driving new growth.",
         conflictExposure: "Critical mineral supplier alternative to Russia",
+        potentialUpside: "+12-18%",
       },
       {
         ticker: "EMBR3.SA",
@@ -835,6 +886,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Defense",
         reason: "C-390 military transport and Super Tucano trainer sales growing.",
         conflictExposure: "Defense exports to non-aligned nations increasing",
+        potentialUpside: "+20-30%",
       },
     ],
     economicSummary: "Agricultural superpower feeding world amid supply disruptions. BRICS leadership role growing.",
@@ -862,6 +914,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Finance",
         reason: "MENA's largest bank benefiting from regional capital flight and wealth management growth.",
         conflictExposure: "Safe haven for regional wealth amid Middle East tensions",
+        potentialUpside: "+10-15%",
       },
       {
         ticker: "ADNOC.AE",
@@ -872,6 +925,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Energy",
         reason: "Oil distribution stable; EV charging network expansion underway.",
         conflictExposure: "Energy security hub for Asia and Europe",
+        potentialUpside: "+12-18%",
       },
       {
         ticker: "EMAAR.AE",
@@ -882,6 +936,7 @@ export const countryMarkets: CountryMarket[] = [
         sector: "Finance",
         reason: "Dubai property boom from Russian and global HNW migration.",
         conflictExposure: "Benefiting from sanctions-driven wealth relocation",
+        potentialUpside: "+15-25%",
       },
     ],
     economicSummary: "Diversification success story. Dubai hub status strengthening amid regional instability.",

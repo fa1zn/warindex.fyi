@@ -5,6 +5,7 @@ import { MapContainer, GeoJSON, useMap } from "react-leaflet";
 import L from "leaflet";
 import { CountryMarket, countryMarkets } from "@/data/markets";
 import "leaflet/dist/leaflet.css";
+import ConflictMarkers from "./ConflictMarkers";
 
 interface WarHeatmapProps {
   onCountryHover: (country: CountryMarket | null, position: { x: number; y: number } | null) => void;
@@ -166,8 +167,16 @@ export default function WarHeatmap({ onCountryHover, onCountryClick }: WarHeatma
 
   if (!mounted || !geoData) {
     return (
-      <div className="w-full h-full bg-[#1a1a1a] flex items-center justify-center">
-        <div className="text-neutral-500 text-sm">Loading...</div>
+      <div className="w-full h-full bg-[#0a0a0a] flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <div className="relative">
+            <div className="w-12 h-12 rounded-full border-2 border-emerald-500/20 border-t-emerald-500 animate-spin" />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="w-6 h-6 rounded-full bg-emerald-500/10" />
+            </div>
+          </div>
+          <div className="text-gray-500 text-sm font-medium">Loading map data...</div>
+        </div>
       </div>
     );
   }
@@ -175,22 +184,23 @@ export default function WarHeatmap({ onCountryHover, onCountryClick }: WarHeatma
   return (
     <div className="w-full h-full">
       <MapContainer
-        center={[25, 10]}
-        zoom={2.3}
-        minZoom={2}
+        center={[20, 0]}
+        zoom={2}
+        minZoom={1.5}
         maxZoom={6}
         className="w-full h-full"
         zoomControl={false}
         attributionControl={false}
         style={{ background: "#1a1a1a" }}
-        maxBounds={[[-60, -180], [85, 180]]}
-        maxBoundsViscosity={1.0}
+        maxBounds={[[-85, -200], [85, 200]]}
+        maxBoundsViscosity={0.8}
       >
         <ChoroplethLayer
           geoData={geoData}
           onCountryHover={onCountryHover}
           onCountryClick={onCountryClick}
         />
+        <ConflictMarkers />
         <MapController />
       </MapContainer>
     </div>
