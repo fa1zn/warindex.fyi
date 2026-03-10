@@ -3,6 +3,7 @@
 import { useState, useEffect, useMemo, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CountryMarket, countryMarkets } from "@/data/markets";
+import { getStockBrand } from "@/data/stockLogos";
 
 interface TopBarProps {
   onCountrySelect: (country: CountryMarket) => void;
@@ -167,28 +168,52 @@ export default function TopBar({ onCountrySelect }: TopBarProps) {
                 {searchResults.stocks.length > 0 && (
                   <div className="p-2 border-t border-gray-100">
                     <div className="text-[11px] font-medium text-gray-400 px-2 py-1.5">Stocks</div>
-                    {searchResults.stocks.map(stock => (
-                      <button
-                        key={stock.ticker}
-                        onClick={() => {
-                          onCountrySelect(stock.country);
-                          setSearchQuery("");
-                          setSearchFocused(false);
-                        }}
-                        className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-gray-50 transition-colors"
-                      >
-                        <div className="w-7 h-7 rounded-lg bg-gray-100 flex items-center justify-center">
-                          <span className="text-[10px] font-bold text-gray-500">{stock.ticker.slice(0, 2)}</span>
-                        </div>
-                        <div className="text-left flex-1">
-                          <div className="text-gray-900 text-sm font-medium">{stock.name}</div>
-                          <div className="text-gray-400 text-xs">{stock.ticker}</div>
-                        </div>
-                        <span className={`text-sm font-semibold ${stock.changePercent >= 0 ? "text-emerald-500" : "text-red-500"}`}>
-                          {stock.changePercent >= 0 ? "+" : ""}{stock.changePercent.toFixed(1)}%
-                        </span>
-                      </button>
-                    ))}
+                    {searchResults.stocks.map(stock => {
+                      const brand = getStockBrand(stock.ticker);
+                      return (
+                        <button
+                          key={stock.ticker}
+                          onClick={() => {
+                            onCountrySelect(stock.country);
+                            setSearchQuery("");
+                            setSearchFocused(false);
+                          }}
+                          className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-gray-50 transition-colors"
+                        >
+                          <div
+                            className="w-8 h-8 rounded-lg flex items-center justify-center overflow-hidden"
+                            style={{ backgroundColor: brand.logoUrl ? '#f3f4f6' : brand.primaryColor }}
+                          >
+                            {brand.logoUrl ? (
+                              <img
+                                src={brand.logoUrl}
+                                alt={stock.name}
+                                className="w-5 h-5 object-contain"
+                                onError={(e) => {
+                                  const parent = e.currentTarget.parentElement;
+                                  if (parent) {
+                                    parent.style.backgroundColor = brand.primaryColor;
+                                    e.currentTarget.style.display = 'none';
+                                    parent.innerHTML = `<span class="text-[10px] font-bold" style="color: ${brand.secondaryColor}">${stock.ticker.slice(0, 3)}</span>`;
+                                  }
+                                }}
+                              />
+                            ) : (
+                              <span className="text-[10px] font-bold" style={{ color: brand.secondaryColor }}>
+                                {stock.ticker.slice(0, 3)}
+                              </span>
+                            )}
+                          </div>
+                          <div className="text-left flex-1">
+                            <div className="text-gray-900 text-sm font-medium">{stock.name}</div>
+                            <div className="text-gray-400 text-xs">{stock.ticker}</div>
+                          </div>
+                          <span className={`text-sm font-semibold ${stock.changePercent >= 0 ? "text-emerald-500" : "text-red-500"}`}>
+                            {stock.changePercent >= 0 ? "+" : ""}{stock.changePercent.toFixed(1)}%
+                          </span>
+                        </button>
+                      );
+                    })}
                   </div>
                 )}
               </motion.div>
@@ -234,28 +259,52 @@ export default function TopBar({ onCountrySelect }: TopBarProps) {
                   <div className="max-h-80 overflow-y-auto">
                     {watchlistStocks.length > 0 ? (
                       <div className="p-2">
-                        {watchlistStocks.map(stock => (
-                          <div
-                            key={stock.ticker}
-                            className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-gray-50"
-                          >
-                            <div className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center">
-                              <span className="text-[10px] font-bold text-gray-500">{stock.ticker.slice(0, 3)}</span>
+                        {watchlistStocks.map(stock => {
+                          const brand = getStockBrand(stock.ticker);
+                          return (
+                            <div
+                              key={stock.ticker}
+                              className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-gray-50"
+                            >
+                              <div
+                                className="w-9 h-9 rounded-lg flex items-center justify-center overflow-hidden"
+                                style={{ backgroundColor: brand.logoUrl ? '#f3f4f6' : brand.primaryColor }}
+                              >
+                                {brand.logoUrl ? (
+                                  <img
+                                    src={brand.logoUrl}
+                                    alt={stock.name}
+                                    className="w-5 h-5 object-contain"
+                                    onError={(e) => {
+                                      const parent = e.currentTarget.parentElement;
+                                      if (parent) {
+                                        parent.style.backgroundColor = brand.primaryColor;
+                                        e.currentTarget.style.display = 'none';
+                                        parent.innerHTML = `<span class="text-[10px] font-bold" style="color: ${brand.secondaryColor}">${stock.ticker.slice(0, 3)}</span>`;
+                                      }
+                                    }}
+                                  />
+                                ) : (
+                                  <span className="text-[10px] font-bold" style={{ color: brand.secondaryColor }}>
+                                    {stock.ticker.slice(0, 3)}
+                                  </span>
+                                )}
+                              </div>
+                              <div className="flex-1">
+                                <div className="text-gray-900 text-sm font-medium">{stock.name}</div>
+                                <div className="text-gray-400 text-xs">{stock.ticker}</div>
+                              </div>
+                              <button onClick={() => toggleWatchlist(stock.ticker)} className="p-1.5 hover:bg-gray-100 rounded-lg">
+                                <svg className="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                                  <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                </svg>
+                              </button>
+                              <span className={`text-sm font-semibold ${stock.changePercent >= 0 ? "text-emerald-500" : "text-red-500"}`}>
+                                {stock.changePercent >= 0 ? "+" : ""}{stock.changePercent.toFixed(1)}%
+                              </span>
                             </div>
-                            <div className="flex-1">
-                              <div className="text-gray-900 text-sm font-medium">{stock.name}</div>
-                              <div className="text-gray-400 text-xs">{stock.ticker}</div>
-                            </div>
-                            <button onClick={() => toggleWatchlist(stock.ticker)} className="p-1.5 hover:bg-gray-100 rounded-lg">
-                              <svg className="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                              </svg>
-                            </button>
-                            <span className={`text-sm font-semibold ${stock.changePercent >= 0 ? "text-emerald-500" : "text-red-500"}`}>
-                              {stock.changePercent >= 0 ? "+" : ""}{stock.changePercent.toFixed(1)}%
-                            </span>
-                          </div>
-                        ))}
+                          );
+                        })}
                       </div>
                     ) : (
                       <div className="p-8 text-center">

@@ -11,6 +11,7 @@ import NewsTicker from "./NewsTicker";
 import TopBar from "./TopBar";
 import WatchlistModal from "./WatchlistModal";
 import ConflictDetailModal from "./ConflictDetailModal";
+import CountryDrawer from "./CountryDrawer";
 
 const WarHeatmap = dynamic(() => import("./map/WarHeatmap"), {
   ssr: false,
@@ -794,12 +795,13 @@ export default function GlobeWrapper() {
         )}
       </AnimatePresence>
 
-      {/* Detail Modal */}
-      <AnimatePresence>
-        {selectedCountry && (
-          <DetailModal country={selectedCountry} liveData={liveData} onClose={() => setSelectedCountry(null)} />
-        )}
-      </AnimatePresence>
+      {/* Country Drawer */}
+      <CountryDrawer
+        country={selectedCountry}
+        isOpen={!!selectedCountry}
+        onClose={() => setSelectedCountry(null)}
+        liveData={liveData}
+      />
 
       {/* Live News Ticker */}
       {!showIntro && !selectedCountry && <NewsTicker />}
@@ -836,27 +838,27 @@ export default function GlobeWrapper() {
         </div>
       )}
 
-      {/* Alerts Panel */}
+      {/* Alerts Panel - Fixed position, below nav bar (z-[1001]) */}
       <AnimatePresence>
         {showAlerts && (
           <>
             <motion.div
-              className="fixed inset-0 bg-black/50 z-[998]"
+              className="fixed inset-0 bg-black/50 z-[900]"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setShowAlerts(false)}
             />
             <motion.div
-              className="fixed right-0 top-0 h-full w-[400px] bg-white z-[999] overflow-hidden"
+              className="fixed top-0 right-0 h-screen w-[380px] bg-white z-[950] flex flex-col"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
-              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              transition={{ type: "spring", damping: 30, stiffness: 350 }}
               style={{ boxShadow: "-10px 0 40px rgba(0,0,0,0.15)" }}
             >
-              {/* Header */}
-              <div className="px-6 pt-6 pb-5 border-b border-gray-100">
+              {/* Header - Fixed at top */}
+              <div className="flex-shrink-0 px-6 pt-6 pb-5 border-b border-gray-100">
                 <div className="flex items-center justify-between">
                   <div>
                     <h2 className="text-gray-900 font-semibold text-xl tracking-tight">Active Conflicts</h2>
@@ -864,7 +866,7 @@ export default function GlobeWrapper() {
                   </div>
                   <button
                     onClick={() => setShowAlerts(false)}
-                    className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+                    className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 transition-colors flex-shrink-0"
                   >
                     <svg className="w-4 h-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -873,8 +875,8 @@ export default function GlobeWrapper() {
                 </div>
               </div>
 
-              {/* Conflicts List */}
-              <div className="overflow-y-auto h-[calc(100%-90px)] p-4">
+              {/* Conflicts List - Scrollable */}
+              <div className="flex-1 overflow-y-auto p-4">
                 <div className="space-y-3">
                   {conflictAlerts.filter(c => c.isActive).map((conflict, i) => {
                     const severityColors = {
@@ -905,9 +907,9 @@ export default function GlobeWrapper() {
                             )}
                           </div>
                           <div className="flex-1 min-w-0">
-                            <div className="flex items-center gap-2 mb-1">
-                              <span className="text-gray-900 font-semibold text-[15px]">{conflict.title}</span>
-                            </div>
+                            <h3 className="text-gray-900 font-semibold text-[15px] leading-snug mb-1">
+                              {conflict.title}
+                            </h3>
                             <p className="text-gray-600 text-sm line-clamp-2">{conflict.description}</p>
                             <div className="flex items-center gap-3 mt-3">
                               <span className="text-gray-400 text-xs">{conflict.date}</span>
